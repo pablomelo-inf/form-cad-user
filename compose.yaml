@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build: .
+    container_name: frontend    
+    volumes:
+       - ./:/react-docker:delegated
+       - /node_modules
+       - ./src/:/app/src
+
+    ports:
+       - 3000:3000
