@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { 
   TextField,
@@ -6,7 +5,7 @@ import {
 } from "@mui/material";
 
 import './FormFieldsAddress.css'
-import { buscaEnderecoPorCep } from "../../infrastructure/apiCep";
+import CepRepository from "../../infrastructure/repository/CepRepository";
 
 
 function FormFieldsAddress() { 
@@ -35,14 +34,15 @@ function FormFieldsAddress() {
       cidade: '',
       estado: ''
     });    
-
+    //Optional Chaining .?  JavaScript ES2020
     try{      
-      const data = await buscaEnderecoPorCep(formData.cep)
+      const data = await CepRepository.buscarCep(formData.cep)
+      console.log(data)
       setFormData({
         ...formData,
-        endereco: `${data.street}, ${data.neighborhood}`,
-        cidade: data.city,
-        estado: data.state
+        endereco: `${data?.logradouro}`,
+        cidade: data?.cidade,
+        estado: data?.estado
       });
 
     }catch (error){
@@ -56,10 +56,12 @@ function FormFieldsAddress() {
 
   return (
     <> 
+    
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
             label="CEP"
+            name="cep"
             variant="outlined"
             fullWidth
             value={formData.cep}
@@ -74,6 +76,7 @@ function FormFieldsAddress() {
         <Grid item xs={12}>
           <TextField
             label="Endereço"
+            name="endereco"
             variant="outlined"
             fullWidth
             value={formData.endereco}
@@ -85,6 +88,7 @@ function FormFieldsAddress() {
         <Grid item xs={12} sm={6}>
           <TextField
             label="Cidade"
+            name="cidade"
             variant="outlined"
             fullWidth
             value={formData.cidade}
@@ -96,6 +100,7 @@ function FormFieldsAddress() {
         <Grid item xs={12} sm={6}>
           <TextField
             label="Estado"
+            name="estado"
             variant="outlined"
             fullWidth
             value={formData.estado}

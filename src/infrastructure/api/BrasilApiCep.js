@@ -1,5 +1,6 @@
+import CepDTO from "../../utils/CepDTO";
 
-async function buscaEnderecoPorCep(cep){
+async function BrasilApi(cep){
     try{
         const response = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`);
         const data = await response.json();  
@@ -9,7 +10,13 @@ async function buscaEnderecoPorCep(cep){
             throw new Error('CEP não encontrado');
         
         }else{
-            await response.json();  
+            return new CepDTO(
+                data.cep,
+                `${data.street}, ${data.neighborhood}`,
+                ``,
+                data.city,
+                data.state
+            );
         }
 
     }catch(error){
@@ -18,4 +25,4 @@ async function buscaEnderecoPorCep(cep){
     }
 }
 
-export {buscaEnderecoPorCep};
+export {BrasilApi};
