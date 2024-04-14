@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/form-cad-user/static/css/main.212d3801.css",
+    "main.js": "/form-cad-user/static/js/main.3b5b26f6.js",
+    "index.html": "/form-cad-user/index.html",
+    "main.212d3801.css.map": "/form-cad-user/static/css/main.212d3801.css.map",
+    "main.3b5b26f6.js.map": "/form-cad-user/static/js/main.3b5b26f6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.212d3801.css",
+    "static/js/main.3b5b26f6.js"
+  ]
+}
